@@ -24,8 +24,13 @@ router.post('/', async (req, res) => {
 })
 
 // DELETE
-router.delete('/:id', (req, res) => {
-    res.send('Delete');
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json(deletedProduct);
+    } catch (error) {
+        res.status(400).json(error);
+    }
 })
 
 // PUT update
