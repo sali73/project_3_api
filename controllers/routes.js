@@ -4,8 +4,13 @@ const router = express.Router();
 const Product = require('../models/products');
 
 // GET index
-router.get('/', (req, res) => {
-    res.send('Index');
+router.get('/', async (req, res) => {
+    try {
+        const allProducts = await Product.find({});
+        res.status(200).json(allProducts);
+    } catch (error) {
+        res.status(400).json(error);
+    }
 })
 
 // POST new
