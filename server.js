@@ -13,7 +13,6 @@ const {
 
 const db = mongoose.connection;
 
-
 // db connection
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
