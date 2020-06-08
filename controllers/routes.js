@@ -9,8 +9,13 @@ router.get('/', (req, res) => {
 })
 
 // POST new
-router.post('/', (req, res) => {
-    res.send('New');
+router.post('/', async (req, res) => {
+    try {
+        const newProduct = await Product.create(req.body);
+        res.status(200).json(newProduct);
+    } catch (error) {
+        res.status(400).json(error);
+    }
 })
 
 // DELETE
