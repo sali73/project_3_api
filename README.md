@@ -1,2 +1,2 @@
 # project_3_api
-backed express api for project 3
+backend express api for project 3
