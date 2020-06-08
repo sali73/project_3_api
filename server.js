@@ -9,6 +9,7 @@ const {
     PORT = 3001,
     MONGO_URI = 'mongodv://localhost:27017' // fill in db name 
 } = process.env;
+
 const db = mongoose.connection;
 
 // db connection
