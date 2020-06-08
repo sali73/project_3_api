@@ -4,7 +4,7 @@ const router = express.Router();
 const products = require('../models/products');
 
 ////////////////// 
-//Index Route
+// Index Route
 //////////////////
 router.get('/', async (req, res) => {
    try {

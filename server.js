@@ -16,7 +16,7 @@ const db = mongoose.connection;
 // db connection
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
     useUnifiedTopology: true,
 });
 db.once('open', () => console.log('connected to mongo at', MONGO_URI));
