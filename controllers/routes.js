@@ -34,8 +34,13 @@ router.delete('/:id', async (req, res) => {
 })
 
 // PUT update
-router.put('/:id', (req, res) => {
-    res.send('Update');
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        res.status(400).json(error);
+    }
 })
 
 module.exports = router;
