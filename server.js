@@ -36,6 +36,7 @@ const corsOptions = {
    },
 };
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use('/products', productsController);
 
