@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const productsController = require('./controllers/routes.js')
 const cors = require('cors');
 
 // global variables
@@ -11,7 +12,7 @@ const {
 } = process.env;
 
 const db = mongoose.connection;
-const products = require('./models/products');
+
 
 // db connection
 mongoose.connect(MONGO_URI, {
@@ -24,12 +25,12 @@ db.on('error', (err) => console.log('🚨🚨🚨', err));
 
 // middleware
 app.use(express.json());
-app.use('/products', products);
+app.use('/products', productsController);
 
 // test ============================🚧🚧🚧 DELETE BEFORE SUBMIT 🚧🚧🚧
-app.get('/', (req, res) => {
-    res.send('Hello World');
-})
+// app.get('/', (req, res) => {
+//     res.send('Hello World');
+// })
 
 // listen
 app.listen(PORT, () => console.log('listening on', PORT));

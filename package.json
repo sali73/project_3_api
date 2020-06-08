@@ -4,9 +4,10 @@
   "description": "backend express api for project 3",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
     "start": "node server.js"
   },
+ 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chrisungerjs/project_3_api.git"
@@ -24,5 +25,6 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.9.18"
-  }
+  },
+  "devDependencies": {}
 }
