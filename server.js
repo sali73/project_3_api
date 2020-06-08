@@ -22,7 +22,20 @@ mongoose.connect(MONGO_URI, {
 });
 db.once('open', () => console.log('connected to mongo at', MONGO_URI));
 db.on('error', (err) => console.log('🚨🚨🚨', err));
+/////////////////////
+// CORS
+////////////////////
+const whitelist = ['http://localhost:3000'];
 
+const corsOptions = {
+   origin: function (origin, callback) {
+       if (whitelist.indexOf(origin) !== -1) {
+           callback(null, true);
+       } else {
+           callback(new Error('Not allowed by CORS'));
+       }
+   },
+};
 // middleware
 app.use(express.json());
 app.use('/products', productsController);
