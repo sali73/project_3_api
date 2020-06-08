@@ -29,6 +29,6 @@ const productSchema = new Schema({
         required: true,
         min: [0, 'quantity cannot be negative']
     },
-})
+}, { timestamps: true })
 
 module.exports = Product = model('product', productSchema);

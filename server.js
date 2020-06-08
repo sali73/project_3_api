@@ -11,7 +11,7 @@ const {
 } = process.env;
 
 const db = mongoose.connection;
-const products = require('./models/products');
+const productController = require('./controllers/routes');
 
 // db connection
 mongoose.connect(MONGO_URI, {
@@ -24,7 +24,7 @@ db.on('error', (err) => console.log('🚨🚨🚨', err));
 
 // middleware
 app.use(express.json());
-app.use('/products', products);
+app.use('/products', productController);
 
 // test ============================🚧🚧🚧 DELETE BEFORE SUBMIT 🚧🚧🚧
 app.get('/', (req, res) => {
