@@ -7,7 +7,6 @@ const { model, Schema } = require('mongoose');
 const productSchema = new Schema({
     name: { 
         type: String,
-        // should EVERYTHING be required? Or just some things?
         required: true,
     },
     description: {
