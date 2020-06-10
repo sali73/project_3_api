@@ -7,7 +7,6 @@ const products = require('../models/products');
 //Index Route
 //////////////////
 router.get('/', async (req, res) => {
-    console.log('got it')
    try {
        const allProducts = await products.find({});
        res.status(200).json(allProducts);
