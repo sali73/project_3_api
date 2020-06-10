@@ -8,8 +8,10 @@ const {
     SECRET = 'shhh its a secret'
 } = process.env
 
-
+//////////////////////////
 // New User Authentication
+//////////////////////////
+
 users.post('/', (req, res) => {
     // destructure username and password out of request
     const { username, password } = req.body;

@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const productsController = require('./controllers/routes.js');
 const usersController = require('./controllers/users.js');
+const authController = require('./controllers/auth.js');
 
 ////////////////////
 // Global Variables
@@ -50,6 +51,7 @@ db.on('error', (err) => console.log('🚨🚨🚨', err));
 app.use(express.json());
 app.use('/products', productsController);
 app.use('/users', usersController);
+app.use('/auth', authController); 
 
 // listen
 /////////////
