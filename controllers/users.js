@@ -3,6 +3,11 @@ const express = require('express');
 const users = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/users.js');
+const jwt = require('jsonwebtoken');
+const {
+    SECRET = 'shhh its a secret'
+} = process.env
+
 
 // New User Authentication
 users.post('/', (req, res) => {
@@ -40,12 +45,28 @@ users.post('/', (req, res) => {
                     newUser.password = hash;
                     newUser.save()
                         .then(user => {
-                            res.json({
-                                user: {
-                                    _id: user._id,
-                                    username: user.username,
-                                }
-                            })
+                            // sign jasonwebtoken
+                            jwt.sign(
+                                // Payload (json object)
+                                { _id: user._id },
+                                // Secret
+                                SECRET,
+                                // Expiration object 
+                                // - optional - this is set to 1 hour:
+                                { expiresIn: 1000 * 60 * 60 * 1 },
+                                // Callback
+                                (err, token) => {
+                                    if(err) throw err;
+                                    res.json({
+                                        token,
+                                        user: {
+                                            _id: user._id,
+                                            username: user.username,
+                                        }
+                                    })    
+                                },
+                            )
+
                         })
                 })
             } )
