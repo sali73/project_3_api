@@ -7,7 +7,6 @@
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
- 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chrisungerjs/project_3_api.git"
