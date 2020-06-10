@@ -41,22 +41,11 @@ const corsOptions = {
    },
 };
 
-/////////////////
-// Middleware
-////////////////
-app.use(cors());
+// middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/products', productsController);
 
-//////////////////////////////////////////////////////////////////////////
-// test ============================🚧🚧🚧 DELETE BEFORE SUBMIT 🚧🚧🚧
-// app.get('/', (req, res) => {
-//     res.send('Hello World');
-// })
-/////////////////////////////////////////////////////////////////////////
-
-
-//////////////
 // listen
 /////////////
 app.listen(PORT, () => console.log('listening on', PORT));
