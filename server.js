@@ -1,4 +1,6 @@
-// dependencies
+//////////////////
+// Dependencies
+/////////////////
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -6,17 +8,21 @@ const cors = require('cors');
 const productsController = require('./controllers/routes.js');
 const usersController = require('./controllers/users.js');
 
-// global variables
+////////////////////
+// Global Variables
+///////////////////
 const {
     PORT = 3001,
     MONGO_URI = 'mongodb://localhost:27017/products',
 } = process.env;
 const db = mongoose.connection;
 
+////////////////////
 // db connection
+///////////////////
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
     useUnifiedTopology: true,
     useCreateIndex: true,
 });
@@ -38,6 +44,7 @@ db.on('error', (err) => console.log('🚨🚨🚨', err));
 //    },
 // };
 
+
 // middleware
 // app.use(cors(corsOptions));
 app.use(express.json());
@@ -45,4 +52,5 @@ app.use('/products', productsController);
 app.use('/users', usersController);
 
 // listen
+/////////////
 app.listen(PORT, () => console.log('listening on', PORT));
