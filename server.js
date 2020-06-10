@@ -21,9 +21,11 @@ mongoose.connect(MONGO_URI, {
 });
 db.once('open', () => console.log('connected to mongo at', MONGO_URI));
 db.on('error', (err) => console.log('🚨🚨🚨', err));
+
 /////////////////////
 // CORS
 ////////////////////
+
 const whitelist = ['http://localhost:3000'];
 
 const corsOptions = {
@@ -36,13 +38,9 @@ const corsOptions = {
    },
 };
 // middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/products', productsController);
-
-// test ============================🚧🚧🚧 DELETE BEFORE SUBMIT 🚧🚧🚧
-// app.get('/', (req, res) => {
-//     res.send('Hello World');
-// })
 
 // listen
 app.listen(PORT, () => console.log('listening on', PORT));
