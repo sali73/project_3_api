@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 const productsController = require('./controllers/routes.js');
 const usersController = require('./controllers/users.js');
 const authController = require('./controllers/auth.js');
@@ -15,6 +16,7 @@ const authController = require('./controllers/auth.js');
 const {
     PORT = 3001,
     MONGO_URI = 'mongodb://localhost:27017/products',
+    SECRET = 'shh its a secret'
 } = process.env;
 const db = mongoose.connection;
 
@@ -56,3 +58,22 @@ app.use('/auth', authController);
 // listen
 /////////////
 app.listen(PORT, () => console.log('listening on', PORT));
+
+
+
+
+
+const auth = (req, res, next) => {
+    const token = req.header('x-auth-token');
+    try {
+        if (!token) {
+            res.status(401).json({ message: 'Not authorized' })
+        } else {
+            const decoded = jwt.verify(token, SECRET)
+        }
+        req.user = decoded;
+        next();
+    } catch(err) {
+        res.status(400).json({ message: 'Token is not valid' })
+    }
+}
