@@ -4,7 +4,7 @@ const {
     SECRET = 'shhh its a secret'
 } = process.env
 
-const auth = (req, res, next) => {
+const checkAuth = (req, res, next) => {
     const token = req.header('x-auth-token');
     try {
         if (!token) {
@@ -19,4 +19,4 @@ const auth = (req, res, next) => {
     }
 }
 
-module.exports = auth;
+module.exports = checkAuth;
