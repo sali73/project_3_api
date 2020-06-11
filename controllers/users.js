@@ -4,6 +4,7 @@ const users = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/users.js');
 const jwt = require('jsonwebtoken');
+const checkAuth = require('./checkAuth.js');
 const {
     SECRET = 'shhh its a secret'
 } = process.env
@@ -75,5 +76,22 @@ users.post('/', (req, res) => {
             User.create(newUser)
         })
 });
+
+
+// Add to Cart
+users.post('/addToCart', (req, res) => {
+    const { userId, product } = req.body;
+    const {
+        _id,
+        name,
+        image,
+        price,
+    } = product;
+    User.findByIdAndUpdate(userId, 
+        { $push: { cart: [{ _id, name, image, price }]}}, { new: true }, (err, doc) => {
+        if (err) console.log(err)
+        console.log(doc)
+    })
+})
 
 module.exports = users;
