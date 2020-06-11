@@ -4,6 +4,7 @@ const users = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/users.js');
 const jwt = require('jsonwebtoken');
+const checkAuth = require('./checkAuth.js');
 const {
     SECRET = 'shhh its a secret'
 } = process.env
