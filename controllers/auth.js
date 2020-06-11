@@ -79,6 +79,7 @@ auth.get('/', async (req, res) => {
     res.json({
         _id: user._id,
         username: user.username,
+        cart: user.cart,
     });
 })
 

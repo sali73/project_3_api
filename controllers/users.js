@@ -77,4 +77,21 @@ users.post('/', (req, res) => {
         })
 });
 
+
+// Add to Cart
+users.post('/addToCart', (req, res) => {
+    const { userId, product } = req.body;
+    const {
+        _id,
+        name,
+        image,
+        price,
+    } = product;
+    User.findByIdAndUpdate(userId, 
+        { $push: { cart: [{ _id, name, image, price }]}}, { new: true }, (err, doc) => {
+        if (err) console.log(err)
+        console.log(doc)
+    })
+})
+
 module.exports = users;
