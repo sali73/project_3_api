@@ -36,20 +36,20 @@ db.on('error', (err) => console.log('🚨🚨🚨', err));
 // CORS
 ////////////////////
 
-// const whitelist = ['http://localhost:3000'];
-// const corsOptions = {
-//    origin: function (origin, callback) {
-//        if (whitelist.indexOf(origin) !== -1) {
-//            callback(null, true);
-//        } else {
-//            callback(new Error('Not allowed by CORS'));
-//        }
-//    },
-// };
+const whitelist = ['http://localhost:3000'];
+const corsOptions = {
+   origin: function (origin, callback) {
+       if (whitelist.indexOf(origin) !== -1) {
+           callback(null, true);
+       } else {
+           callback(new Error('Not allowed by CORS'));
+       }
+   },
+};
 
 
 // middleware
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/products', productsController);
 app.use('/users', usersController);

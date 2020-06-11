@@ -1,6 +1,6 @@
 // dependencies
 const express = require('express');
-const users = express.Router();
+const auth = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/users.js');
 const jwt = require('jsonwebtoken');
@@ -12,7 +12,9 @@ const {
 // Login Authentication
 //////////////////////////
 
-users.post('/', (req, res) => {
+auth.post('/', (req, res) => {
+
+    console.log('request received')
 
     // destructure username and password out of request
     const { username, password } = req.body;
@@ -20,6 +22,9 @@ users.post('/', (req, res) => {
     if (!username || !password) {
         return res.status(400).json({ message: 'Please enter a Username and Password' });
     }
+
+    console.log('passed initial validation')
+
     // check if username is valid
     User.findOne({ username })
     .then(user => {
@@ -55,4 +60,4 @@ users.post('/', (req, res) => {
         })
 });
 
-module.exports = users;
+module.exports = auth;
