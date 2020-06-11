@@ -7,7 +7,6 @@
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
- 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chrisungerjs/project_3_api.git"
@@ -24,6 +23,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.18"
   },
   "devDependencies": {}
