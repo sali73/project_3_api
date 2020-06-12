@@ -108,4 +108,28 @@ users.post('/addToCart', (req, res) => {
     })
 })
 
+// delete from cart
+users.delete('/:id/:product', async (req, res) => {
+    console.log('got delete')
+    const { id, product } = req.params;
+    if (id !== 'undefined') {
+        User.findById(id, (err, docs) => {
+            if (err) console.log(err)
+            const newCart = docs.cart;
+            let hasRemoved = false;
+            newCart.forEach((item, index) => {
+                if (hasRemoved === false && item._id === product) {
+                    newCart.splice(index, 1);
+                    return hasRemoved = true
+                }
+            })
+            User.findByIdAndUpdate(id, { $set: { cart: [...newCart]}}, { new: true}, (err, docs) => {
+                if (err) console.log(err)
+                console.log(docs)
+            })
+            res.status(200).json(newCart)
+        })
+    }
+})
+
 module.exports = users;
