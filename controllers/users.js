@@ -24,7 +24,7 @@ users.post('/', (req, res) => {
     if (password.length < 6) {
         return res.status(400).json({ message: 'Password must be at least 8 characters' });
     }
-    // Check passwprd for at least one of each:
+    // Check password for at least one of each:
     // - Uppercase Letter
     // - Lowercase Letter
     // - number
@@ -54,7 +54,7 @@ users.post('/', (req, res) => {
                                 { _id: user._id },
                                 // Secret
                                 SECRET,
-                                // Expiration object 
+                                // Expiration object
                                 // - optional - this is set to 1 hour:
                                 { expiresIn: 1000 * 60 * 60 * 1 },
                                 // Callback
@@ -77,6 +77,20 @@ users.post('/', (req, res) => {
         })
 });
 
+
+// GET cart
+users.get('/cart/:id', (req, res) => {
+    console.log(req.params)
+    const userId = req.params.id
+    if (userId !== 'undefined') {
+        User.findById(userId, (err, docs) => {
+            if (err) console.log(err)
+            const cart = docs.cart;
+            console.log(cart)
+            res.status(200).json(cart)
+        })
+    }
+})
 
 // Add to Cart
 users.post('/addToCart', (req, res) => {
