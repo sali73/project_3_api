@@ -35,7 +35,11 @@ db.on('error', (err) => console.log('🚨🚨🚨', err));
 // CORS
 ////////////////////
 
-const whitelist = ['http://localhost:3000'];
+const whitelist = [
+    'http://localhost:3000', 
+    'https://ces-store.netlify.app',
+    'https://5ee67c5c37816d96290bbe6d--ces-store.netlify.app', 
+];
 const corsOptions = {
    origin: function (origin, callback) {
        if (whitelist.indexOf(origin) !== -1) {
@@ -47,7 +51,7 @@ const corsOptions = {
 };
 
 // middleware
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/products', productsController);
 app.use('/users', usersController);
