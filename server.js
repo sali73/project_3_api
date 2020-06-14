@@ -14,7 +14,7 @@ const authController = require('./controllers/auth.js');
 ///////////////////
 const {
     PORT = 3001,
-    MONGO_URI = 'mongodb://localhost:27017/products',
+    MONGODB_URI = 'mongodb://localhost:27017/products',
     SECRET = 'shhh its a secret'
 } = process.env;
 const db = mongoose.connection;
@@ -22,13 +22,13 @@ const db = mongoose.connection;
 ////////////////////
 // db connection
 ///////////////////
-mongoose.connect(MONGO_URI, {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
     useCreateIndex: true,
 });
-db.once('open', () => console.log('connected to mongo at', MONGO_URI));
+db.once('open', () => console.log('connected to mongo at', MONGODB_URI));
 db.on('error', (err) => console.log('🚨🚨🚨', err));
 
 /////////////////////
